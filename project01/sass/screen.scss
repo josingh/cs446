@@ -1,0 +1,74 @@
+/* Variables are used for grid widths and common colors
+ * Nesting is used to set up the column layout with inheritance to have correct heights
+ * A partial is used for the imported font
+ * Mixins used on all of the buttons on the top bar
+ * Operators used to fix the width of the website to 100px by dividing the grid into 8 widths 
+ * http://compass-style.org/reference/compass/layout/sticky_footer/ used for refrence of sticky footer */
+
+@import "compass/reset";
+@import "compass/layout.scss";
+@import "compass/css3";
+@import "blackjackfont";
+
+@include sticky-footer(35px, "#layout", "#layout_footer", "#footer");
+
+
+$header-font-size: 15px;
+$body-font-size: 25px;
+$blueprint_grid_columns: 8;
+$blueprint_grid_width: 1000px / 8px;
+$bkg_color: #cccccc;
+
+@import "blueprint";
+
+body{
+	font-size: $body-font-size;
+}
+
+#{headings()} {
+	color:red;
+	font-family: 'blackjackregular';
+}
+
+@mixin buttoncolor {
+	background-color: white;
+	color: red;
+}
+
+.newButton {
+	@include buttoncolor;
+}
+
+#content {
+	height: 100%;
+	@include container;
+	#header {
+		background: $bkg_color;
+		@include column(8);
+		#buttons {
+			text-align: right;
+		}
+	}
+	#footer {
+		background: $bkg_color;
+		@include column(8);
+		text-align:center;
+	}
+	#mainbar {
+		@include column(5);
+	}
+	#sidebar{
+		@include column(3, true);
+		#sidecontent {
+			text-align:center;
+			margin: 40px;
+			background: $bkg_color;
+		}
+		#login {
+			margin: 15px;
+			text-align:center;
+			@include box-shadow(red 2px 2px 10px);
+			width: 90%;
+		}
+	}
+}
