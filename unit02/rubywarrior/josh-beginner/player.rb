@@ -1,5 +1,6 @@
 class Player
   def play_turn(warrior)
+    if(warrior.feel(:backward).wall?)
   	if(warrior.feel.captive?)
   		warrior.rescue!
   	elsif(@health.to_i > warrior.health.to_i && !warrior.feel.enemy?)
