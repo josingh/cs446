@@ -29,10 +29,6 @@ class Player
   end
 
   def play_turn(warrior)
-<<<<<<< HEAD
-    if(warrior.feel(:backward).wall?)
-  	if(warrior.feel.captive?)
-=======
     #Array of things ahead of me
     @look = warrior.look
 
@@ -47,7 +43,6 @@ class Player
       warrior.pivot!
     #Is there a captive in front of me
   	elsif(warrior.feel.captive?)
->>>>>>> 6f6cf3b319526d13b77ce9b7e18bc1724df5ed2e
   		warrior.rescue!
     #Am I being shot and need to walk back to heal
   	elsif(@health.to_i > warrior.health.to_i && !warrior.feel.enemy? && warrior.health < 13)
