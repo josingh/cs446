@@ -1,0 +1,13 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<h2>Your Adoption</h2>
+<ul>
+<% @checkout.animal_items.last(1).each do |item| %>
+	<%= image_tag("/images/"+item.animal.image_url) %>
+	<br>
+	<%= item.animal.name %>
+	<p> By agreeing to adopt this pet you will provide it with a good home! </p>
+<% end %>
+</ul>

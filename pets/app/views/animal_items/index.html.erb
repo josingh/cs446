@@ -1,0 +1,29 @@
+<h1>Listing animal_items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Animal</th>
+      <th>Checkout</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @animal_items.each do |animal_item| %>
+      <tr>
+        <td><%= animal_item.animal %></td>
+        <td><%= animal_item.checkout %></td>
+        <td><%= link_to 'Show', animal_item %></td>
+        <td><%= link_to 'Edit', edit_animal_item_path(animal_item) %></td>
+        <td><%= link_to 'Destroy', animal_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Animal item', new_animal_item_path %>
