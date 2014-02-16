@@ -1,0 +1,21 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<h2>Sort By: </h2>
+<p><%=link_to "Name", :sort => "name" %></p>
+<p><%=link_to "Age", :sort => "age" %></p>
+<h1>Current Animal Listings</h1>
+
+<% @animals.each do |animal| %>
+	<div class="entry">
+		<%= image_tag("/images/"+animal.image_url) %>
+		<h3><%= animal.name %></h3>
+		<h3><%= sanitize(animal.description) %></h3>
+		<h4><%= animal.breed %><h4>
+		<span class="age">Age: <%= animal.age%></span>
+		<%=button_to "Adopt Me", animal_items_path(animal_id: animal) %>
+	</div>
+<% end %>
+<div class="new">
+		<%=link_to "New Animal", animals_path() %>
+</div>

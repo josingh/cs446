@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  animal_id: 
+  checkout_id: 
+
+two:
+  animal_id: 
+  checkout_id: 
