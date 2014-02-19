@@ -1,4 +1,4 @@
-class AnimalItemsController < ApplicationController
+ class AnimalItemsController < ApplicationController
   include CurrentCheckout
   before_action :set_checkout, only: [:create]
   before_action :set_animal_item, only: [:show, :edit, :update, :destroy]
@@ -27,11 +27,11 @@ class AnimalItemsController < ApplicationController
   # POST /animal_items.json
   def create
     animal = Animal.find(params[:animal_id])
-    @animal_item = @checkout.animal_items.build(animal: animal)
+    @animal_item = @checkout.add_animal(animal.id);
 
     respond_to do |format|
       if @animal_item.save
-        format.html { redirect_to @animal_item.checkout, notice: 'Animal item was successfully created.' }
+        format.html { redirect_to @animal_item.checkout }
         format.json { render action: 'show', status: :created, location: @animal_item }
       else
         format.html { render action: 'new' }
@@ -72,6 +72,6 @@ class AnimalItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def animal_item_params
-      params.require(:animal_item).permit(:animal_id, :checkout_id)
+      params.require(:animal_item).permit(:animal_id)
     end
 end

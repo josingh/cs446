@@ -2,12 +2,14 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-<h2>Your Adoption</h2>
+<h2>Your Considered Adoptions</h2>
 <ul>
-<% @checkout.animal_items.last(1).each do |item| %>
+<% @checkout.animal_items.each do |item| %>
 	<%= image_tag("/images/"+item.animal.image_url) %>
 	<br>
 	<%= item.animal.name %>
-	<p> By agreeing to adopt this pet you will provide it with a good home! </p>
 <% end %>
 </ul>
+
+<%= button_to 'Remove Considerations', @checkout, method: :delete,
+	data: { confirm: 'Are you sure?'} %>

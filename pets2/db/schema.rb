@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205050137) do
+ActiveRecord::Schema.define(version: 20140219044631) do
 
   create_table "adoptions", force: true do |t|
     t.string   "index"
@@ -29,10 +29,13 @@ ActiveRecord::Schema.define(version: 20140205050137) do
     t.integer  "checkout_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quantity",         default: 1
+    t.integer  "foster_parent_id"
   end
 
   add_index "animal_items", ["animal_id"], name: "index_animal_items_on_animal_id"
   add_index "animal_items", ["checkout_id"], name: "index_animal_items_on_checkout_id"
+  add_index "animal_items", ["foster_parent_id"], name: "index_animal_items_on_foster_parent_id"
 
   create_table "animals", force: true do |t|
     t.string   "name"
@@ -55,6 +58,15 @@ ActiveRecord::Schema.define(version: 20140205050137) do
   end
 
   create_table "checkouts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "foster_parents", force: true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "email"
+    t.string   "pay_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,5 +1,6 @@
 class CheckoutsController < ApplicationController
   before_action :set_checkout, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_checkout
 
   # GET /checkouts
   # GET /checkouts.json
@@ -54,9 +55,10 @@ class CheckoutsController < ApplicationController
   # DELETE /checkouts/1
   # DELETE /checkouts/1.json
   def destroy
-    @checkout.destroy
+    @checkout.destroy if @checkout.id == session[:checkout_id]
+    session[:checkout_id] = nil
     respond_to do |format|
-      format.html { redirect_to checkouts_url }
+      format.html { redirect_to store_url, notice: 'No considerded adoptions' }
       format.json { head :no_content }
     end
   end
@@ -70,5 +72,10 @@ class CheckoutsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def checkout_params
       params[:checkout]
+    end
+
+    def invalid_checkout
+      logger.error "Attempt to access invalid checkout #{params[:id]}"
+      redirect_to store_url, notice: 'Invalid checkout'
     end
 end
