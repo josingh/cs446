@@ -1,0 +1,17 @@
+<%= "<h2>Sorted By: #{@sort} </h2>" %>
+<table border="1">
+	<th>Rank</th>
+	<th>Title</th>
+	<th>Author</th>
+	<th>Language</th>
+	<th>Year</th>
+	<% for @book in @books %>
+		<tr>
+			<td><%= @book.id %></td>
+			<td><%= @book.title %></td>
+			<td><%= @book.author %></td>
+			<td><%= @book.language %></td>
+			<td><%= @book.published %></td>
+		</tr>
+	<% end %>
+</table>
